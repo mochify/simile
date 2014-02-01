@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Renderly.Imaging
+namespace Mochify.Simile.Core.Imaging
 {
     /// <summary>
     /// This is the interface to specify image comparison methods that determine

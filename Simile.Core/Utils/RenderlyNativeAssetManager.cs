@@ -4,12 +4,12 @@ using System.IO;
 using System.Net;
 using Microsoft.Win32;
 
-namespace Renderly.Utils
+namespace Mochify.Simile.Core.Utils
 {
     /// <summary>
     /// This class interacts with the file system/native system to get files.
     /// </summary>
-    public class RenderlyNativeAssetManager : IRenderlyAssetManager
+    public class SimileNativeAssetManager : IAssetManager
     {
         public Stream Get(string path)
         {

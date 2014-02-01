@@ -1,4 +1,4 @@
-﻿namespace Renderly.Utils
+﻿namespace Mochify.Simile.Core.Utils
 {
     public class ShellTestCase
     {

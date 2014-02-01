@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Renderly
+namespace Mochify.Simile.Core
 {
     public class TestCase
     {

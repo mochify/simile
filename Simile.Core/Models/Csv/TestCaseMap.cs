@@ -1,6 +1,6 @@
 ﻿using CsvHelper.Configuration;
 
-namespace Renderly.Models.Csv
+namespace Mochify.Simile.Core.Models.Csv
 {
     class TestCaseMap : CsvClassMap<TestCase>
     {

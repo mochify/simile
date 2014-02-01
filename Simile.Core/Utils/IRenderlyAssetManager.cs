@@ -1,8 +1,8 @@
 ﻿using System.IO;
 
-namespace Renderly.Utils
+namespace Mochify.Simile.Core.Utils
 {
-    public interface IRenderlyAssetManager
+    public interface IAssetManager
     {
         /// <summary>
         /// Retrieve a stream to an asset/object with a valid URI.

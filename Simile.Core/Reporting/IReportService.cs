@@ -1,4 +1,4 @@
-﻿namespace Renderly.Reporting
+﻿namespace Mochify.Simile.Core.Reporting
 {
     /// <summary>
     /// This is the interface for report manager/creator objects.

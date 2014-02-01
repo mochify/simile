@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Drawing;
 
-using Renderly.Imaging;
-using Renderly.Utils;
+using Mochify.Simile.Core.Imaging;
+using Mochify.Simile.Core.Utils;
 
 using System.IO;
 
-namespace Renderly.Controllers
+namespace Mochify.Simile.Core.Controllers
 {
     public class RenderingController
     {
         private IImageComparer _imageComparer;
-        private IRenderlyAssetManager _fileManager;
+        private IAssetManager _fileManager;
 
-        public RenderingController(IImageComparer comparer, IRenderlyAssetManager fileManager)
+        public RenderingController(IImageComparer comparer, IAssetManager fileManager)
         {
             if (comparer == null)
             {

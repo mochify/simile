@@ -4,9 +4,9 @@ using System.Drawing.Imaging;
 using AForge.Imaging;
 using AForge.Imaging.Filters;
 
-using Renderly.Utils;
+using Mochify.Simile.Core.Utils;
 
-namespace Renderly.Imaging
+namespace Mochify.Simile.Core.Imaging
 {
     public class ExhaustiveTemplateComparer : AbstractImageComparer
     {

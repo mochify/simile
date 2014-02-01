@@ -5,9 +5,9 @@ using System.IO;
 using MoreLinq;
 
 using CsvHelper;
-using Renderly.Utils;
+using Mochify.Simile.Core.Utils;
 
-namespace Renderly.Models.Csv
+namespace Mochify.Simile.Core.Models.Csv
 {
     /// <summary>
     /// Prototype model class that opens a backing data store (CSV for now)
@@ -17,13 +17,13 @@ namespace Renderly.Models.Csv
         private bool _disposed;
         private IList<TestCase> _data;
         private Stream _csvStream;
-        private IRenderlyAssetManager _fileManager;
+        private IAssetManager _fileManager;
 
         /// <summary>
         /// Create a CsvModel with a stream to read and write to.
         /// </summary>
         /// <param name="csvStream">A stream that contains CSV data to into the model.</param>
-        public CsvModel(Stream csvStream, IRenderlyAssetManager fileManager)
+        public CsvModel(Stream csvStream, IAssetManager fileManager)
         {
             _fileManager = fileManager;
             _csvStream = csvStream;

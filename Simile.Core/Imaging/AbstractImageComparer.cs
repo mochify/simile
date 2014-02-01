@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Renderly.Imaging
+namespace Mochify.Simile.Core.Imaging
 {
     public abstract class AbstractImageComparer : IImageComparer
     {

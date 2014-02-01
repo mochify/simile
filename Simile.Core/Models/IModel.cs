@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Renderly.Models
+namespace Mochify.Simile.Core.Models
 {
     public interface ITestCaseModel
     {

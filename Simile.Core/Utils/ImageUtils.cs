@@ -1,8 +1,7 @@
-﻿
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace Renderly.Utils
+namespace Mochify.Simile.Core.Utils
 {
     public static class ImageUtils
     {

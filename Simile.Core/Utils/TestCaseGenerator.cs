@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Renderly.Utils
+namespace Mochify.Simile.Core.Utils
 {
     public class TestCaseGenerator
     {
-        private IRenderlyAssetManager _fileManager;
+        private IAssetManager _fileManager;
 
-        public TestCaseGenerator(IRenderlyAssetManager fileManager)
+        public TestCaseGenerator(IAssetManager fileManager)
         {
             _fileManager = fileManager;
         }

@@ -3,7 +3,7 @@ using System.Linq;
 using System.IO;
 using CsvHelper;
 
-namespace Renderly.Utils
+namespace Mochify.Simile.Core.Utils
 {
     public class ShellTestCsvModel
     {
