@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Renderly.Reporting
+namespace Mochify.Simile.Core.Reporting
 {
     /// <summary>
     /// This is the base interface for the various views that can be used

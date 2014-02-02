@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using System.Drawing;
 
@@ -16,9 +17,10 @@ namespace Mochify.Simile
         public Image ReferenceImage { get; set; }
         public Image SourceImage { get; set; }
         public Image DifferenceImage { get; set; }
+
         public IEnumerable<string> Comments
         {
-            get { return _comments; }
+            get { return _comments.Skip(0); }
         }
 
         public TestResult()

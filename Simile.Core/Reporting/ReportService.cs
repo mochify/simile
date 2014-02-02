@@ -6,9 +6,9 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
 
-using Renderly.Utils;
+using Mochify.Simile.Core.Utils;
 
-namespace Renderly.Reporting
+namespace Mochify.Simile.Core.Reporting
 {
     public class ReportService : IReportService
     {
@@ -36,7 +36,7 @@ namespace Renderly.Reporting
         private int _failedTests;
         private int _passedTests;
 
-        IRenderlyAssetManager _assetManager;
+        IAssetManager _assetManager;
         private readonly ReportServiceConfiguration _configuration;
 
         public ReportServiceConfiguration Configuration
@@ -44,7 +44,7 @@ namespace Renderly.Reporting
             get { return _configuration; }
         }
 
-        public ReportService(IRenderlyAssetManager assetManager, ReportServiceConfiguration config)
+        public ReportService(IAssetManager assetManager, ReportServiceConfiguration config)
         {
             _assetManager = assetManager;
             _configuration = config;
@@ -55,7 +55,7 @@ namespace Renderly.Reporting
         }
 
 
-        public ReportService(IRenderlyAssetManager assetManager)
+        public ReportService(IAssetManager assetManager)
             : this(assetManager, new ReportServiceConfiguration())
         {
         

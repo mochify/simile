@@ -2,7 +2,7 @@
 
 using Nustache.Core;
 
-namespace Renderly.Reporting
+namespace Mochify.Simile.Core.Reporting
 {
     /// <summary>
     /// This is a b

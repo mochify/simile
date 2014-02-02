@@ -1,4 +1,4 @@
-﻿namespace Renderly.Reporting
+﻿namespace Mochify.Simile.Core.Reporting
 {
     public class ReportServiceConfiguration
     {

@@ -67,7 +67,9 @@
     <Reference Include="MoreLinq">
       <HintPath>..\packages\morelinq.1.0.16006\lib\net35\MoreLinq.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationCore" />
+    <Reference Include="Nustache.Core">
+      <HintPath>..\packages\Nustache.1.13.8.22\lib\net20\Nustache.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -87,6 +89,9 @@
     <Compile Include="Imaging\ExhaustiveTemplateComparer.cs" />
     <Compile Include="Reporting\IReportService.cs" />
     <Compile Include="Reporting\IReportView.cs" />
+    <Compile Include="Reporting\Mustache\MustacheView.cs" />
+    <Compile Include="Reporting\ReportService.cs" />
+    <Compile Include="Reporting\ReportServiceConfiguration.cs" />
     <Compile Include="TestCase.cs" />
     <Compile Include="Models\Csv\TestCaseMap.cs" />
     <Compile Include="TestResult.cs" />
