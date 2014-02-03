@@ -4,7 +4,7 @@ using System.Linq;
 
 using System.Drawing;
 
-namespace Mochify.Simile 
+namespace Mochify.Simile.Core
 {
     public class TestResult : IDisposable
     {
