@@ -13,7 +13,7 @@ namespace Mochify.Simile.Core.Reporting
     public class ReportService : IReportService
     {
         /// <summary>
-        /// A lightweight class to hold basically the same stuff as Renderly.TestResult,
+        /// A lightweight class to hold basically the same stuff as Simile.Core.TestResult,
         /// but without the image references. 
         /// </summary>
         class ReportResult

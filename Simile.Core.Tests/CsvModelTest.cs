@@ -7,7 +7,7 @@ using Mochify.Simile.Core;
 using Mochify.Simile.Core.Models.Csv;
 using Mochify.Simile.Core.Tests.Mocks;
 
-namespace RenderlyTests
+namespace Mochify.Simile.Core.Tests
 {
     [TestClass()]
     public class CsvModelTest

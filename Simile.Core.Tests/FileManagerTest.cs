@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace RenderlyTests
+namespace Mochify.Simile.Core.Tests
 {
     [TestClass()]
     class FileManagerTest
