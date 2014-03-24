@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 
+using Common.Logging;
+
 namespace Mochify.Simile.Core.Utils
 {
     public class TestCaseGenerator
     {
         private IAssetManager _fileManager;
+        private static readonly ILog _log = LogManager.GetCurrentClassLogger();
 
         public TestCaseGenerator(IAssetManager fileManager)
         {
@@ -21,9 +24,22 @@ namespace Mochify.Simile.Core.Utils
         /// <returns></returns>
         public IEnumerable<TestCase> GenerateTestCases(IEnumerable<ShellTestCase> shells)
         {
+            int c = 0;
             foreach (var shell in shells)
             {
-                yield return Generate(shell);
+                ++c;
+                TestCase tc = null;
+                try
+                {
+                    tc = Generate(shell);
+                }
+                catch (Exception e)
+                {
+                    _log.WarnFormat("Problem adding test case {0}: {1}", c, shell.ReferenceLocation);
+                    _log.Debug(e.Message, e);
+                    continue;
+                }
+                yield return tc;
             }
         }
 

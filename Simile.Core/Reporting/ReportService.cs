@@ -109,7 +109,7 @@ namespace Mochify.Simile.Core.Reporting
 
         private void CreateReportLayout()
         {
-            _assetManager.CreateFolder(string.Join("/", Configuration.OutputDirectory,
+            _assetManager.CreateFolder(Path.Combine(Configuration.OutputDirectory,
                 Configuration.ReportName, "images"));
         }
 

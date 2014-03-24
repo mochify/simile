@@ -78,7 +78,7 @@ namespace Mochify.Simile.Core.Models.Csv
             // TODO this stifles multi-threading/parallel methods doing AddTestCases/AddTestCase
             // since this method currently assumes it has full control over the Test ID generation.
             // Of course, if you don't care about having distinct Test IDs in your CSV or will
-            // fix them later, then parallelize away.
+            // fix them later, then parallelize away. Or use Interlocked.Increment.
             var maxTestId = NextTestId;
             foreach (var t in it)
             {

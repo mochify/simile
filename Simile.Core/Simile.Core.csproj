@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Mochify.Simile</RootNamespace>
     <AssemblyName>Mochify.Simile.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -28,6 +28,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\RenderlyApp\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -60,6 +61,12 @@
     </Reference>
     <Reference Include="AForge.Math">
       <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging">
+      <HintPath>..\..\renderly-next\packages\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core">
+      <HintPath>..\..\renderly-next\packages\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
     <Reference Include="CsvHelper">
       <HintPath>..\packages\CsvHelper.2.4.0\lib\net40-client\CsvHelper.dll</HintPath>
@@ -96,8 +103,8 @@
     <Compile Include="Models\Csv\TestCaseMap.cs" />
     <Compile Include="TestResult.cs" />
     <Compile Include="Utils\ImageUtils.cs" />
-    <Compile Include="Utils\IRenderlyAssetManager.cs" />
-    <Compile Include="Utils\RenderlyNativeAssetManager.cs" />
+    <Compile Include="Utils\IAssetManager.cs" />
+    <Compile Include="Utils\SimileNativeAssetManager.cs" />
     <Compile Include="Utils\ShellTestCase.cs" />
     <Compile Include="Utils\ShellTestCaseMap.cs" />
     <Compile Include="Utils\ShellTestCsvModel.cs" />
