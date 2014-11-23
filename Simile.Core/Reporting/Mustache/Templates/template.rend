@@ -17,6 +17,7 @@
     <tr>
         <td>Test Case</td>
         <td>Passed</td>
+	<td>Source URI</td>
         <td>Reference Image</td>
         <td>Preview Image</td>
         <td>Difference</td>
@@ -26,6 +27,7 @@
         <tr>
             <td>{{TestId}}</td>
             <td>{{TestPassed}}</td>
+	    <td><a href="{{OriginalSourceUri}}">{{OriginalSourceUri}}</a></td>
             <td><img src='{{ReferencePath}}'</td>
             <td><img src='{{SourcePath}}'</td>
             <td><img src='{{DifferencePath}}'</td>

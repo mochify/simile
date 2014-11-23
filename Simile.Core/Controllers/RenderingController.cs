@@ -55,6 +55,7 @@ namespace Mochify.Simile.Core.Controllers
 
             var result = new TestResult().ForTestId(testId);
             result.OriginalReferenceLocation = tc.ReferenceLocation;
+            result.OriginalSourceLocation = tc.SourceLocation;
             try
             {
                 using (var preview = new Bitmap(_fileManager.Get(sourceImage)))

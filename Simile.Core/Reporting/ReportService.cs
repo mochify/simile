@@ -25,6 +25,10 @@ namespace Mochify.Simile.Core.Reporting
             public string SourcePath { get; set; }
             public string DifferencePath { get; set; }
 
+            // This is set to the actual URI the image was retrieved from
+            // (not the local file on disk that was downloaded from it)
+            public string OriginalSourceUri { get; set; }
+
             public IList<string> Comments
             {
                 get { return _comments; }
@@ -89,7 +93,8 @@ namespace Mochify.Simile.Core.Reporting
                     Comments = new List<string>(tr.Comments),
                     SourcePath = MakeUri(locations.Source),
                     ReferencePath = MakeUri(locations.Reference),
-                    DifferencePath = MakeUri(locations.Difference)
+                    DifferencePath = MakeUri(locations.Difference),
+                    OriginalSourceUri = MakeUri(tr.OriginalSourceLocation)
                 };
                 _results.Add(reportResult);
             }
@@ -159,9 +164,6 @@ namespace Mochify.Simile.Core.Reporting
 
             var images = new List<Tuple<Image, string, ImageFormat>>();
 
-            //string fileExtension = Configuration.OutputImageType == "png" ? "png" : "jpg";
-            //ImageFormat format = Configuration.OutputImageType == "png" ? ImageFormat.Png : ImageFormat.Jpeg;
-
             var uuid = Guid.NewGuid().ToString("N");
             var sourcePath = string.Format("images/{0}-{1}-generated.{2}", tr.TestId, uuid, GetImageExtension(tr.SourceImage));
             images.Add(Tuple.Create(tr.SourceImage, sourcePath, tr.SourceFormatHint));
@@ -186,11 +188,6 @@ namespace Mochify.Simile.Core.Reporting
                 {
                     image.Item1.Save(Path.Combine(Configuration.OutputDirectory, Configuration.ReportName, image.Item2), image.Item3);
                 }
-                //using (var ms = new MemoryStream())
-                //{
-                //    image.Item1.Save(ms, ImageFormat.Jpeg);
-                //    _assetManager.Save(ms, string.Join("/", Configuration.OutputDirectory, image.Item2));
-                //}
             }
 
             // yes I am evil - returning an anonymous type via dynamic.

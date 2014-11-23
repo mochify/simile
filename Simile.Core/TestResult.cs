@@ -14,6 +14,7 @@ namespace Mochify.Simile.Core
         private IList<string> _comments = new List<string>();
         public int TestId { get; set; }
         public bool TestPassed { get; set; }
+        public string OriginalSourceLocation { get; set; }
         public string OriginalReferenceLocation { get; set; }
         public ImageFormat ReferenceFormatHint { get; set; }
         public Image ReferenceImage { get; set; }
