@@ -40,6 +40,8 @@ namespace Mochify.Simile.Core.Models.Csv
                 csv.Configuration.RegisterClassMap<TestCaseMap>();
                 csv.Configuration.HasHeaderRecord = true;
                 csv.Configuration.IsHeaderCaseSensitive = false;
+                csv.Configuration.SkipEmptyRecords = true;
+                csv.Configuration.IgnoreReadingExceptions = true;
                 _data = csv.GetRecords<TestCase>().ToList();
             }
             else
@@ -129,6 +131,7 @@ namespace Mochify.Simile.Core.Models.Csv
             var csv = new CsvWriter(sw);
             csv.Configuration.HasHeaderRecord = true;
             csv.Configuration.RegisterClassMap<TestCaseMap>();
+            csv.Configuration.QuoteAllFields = true;
             csv.WriteHeader(typeof(TestCase));
             csv.WriteRecords(GetTestCases());
             // have to manually flush because we're not wrapping the writer in a 'using'

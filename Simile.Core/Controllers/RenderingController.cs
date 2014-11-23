@@ -5,6 +5,8 @@ using System.Drawing;
 using Mochify.Simile.Core.Imaging;
 using Mochify.Simile.Core.Utils;
 
+using System.Threading.Tasks;
+
 using System.IO;
 
 namespace Mochify.Simile.Core.Controllers
@@ -26,10 +28,22 @@ namespace Mochify.Simile.Core.Controllers
 
         public IEnumerable<TestResult> RunTests(IEnumerable<TestCase> testCases)
         {
-            foreach (var tc in testCases)
+            var results = new List<TestResult>();
+            try
+            {
+                var x = Parallel.ForEach(testCases, tc =>
+                {
+                    results.Add(RunTest(tc));
+                });
+            } catch (Exception e)
+            {
+                // do nothing yet...
+            }
+            /*foreach (var tc in testCases)
             {
                 yield return RunTest(tc);
-            }
+            }*/
+            return results;
         }
 
         private TestResult RunTest(TestCase tc)
@@ -63,20 +77,27 @@ namespace Mochify.Simile.Core.Controllers
                     // I'd rather not pass the streams along so that I can manage them,
                     // just create a copy of the reference and preview bitmaps here
 
-                    result.ReferenceImage = ImageUtils.CopyBitmap(reference, reference.PixelFormat);
-                    result.SourceImage = ImageUtils.CopyBitmap(preview, preview.PixelFormat);
+                    result.ReferenceImage = new Bitmap(reference);
+                    result.ReferenceFormatHint = reference.RawFormat;
+                    result.SourceImage = new Bitmap(preview);
+                    result.SourceFormatHint = preview.RawFormat;
                     result.DifferenceImage = diffImage;
+                    result.DifferenceFormatHint = diffImage.RawFormat;
                 }
             }
-            catch (IOException e)
+            catch (Exception e)
             {
-                result.TestPassed = false;
-                result.WithComment(e.Message);
-
-                if (e.InnerException != null)
+                if (e is ArgumentException || e is IOException)
                 {
-                    result.WithComment(e.InnerException.Message);
+                    result.TestPassed = false;
+                    result.WithComment(e.Message); 
+                    if (e.InnerException != null)
+                    {
+                        result.WithComment(e.InnerException.Message);
+                    }
+                    return result;
                 }
+                throw;
             }
 
             return result;

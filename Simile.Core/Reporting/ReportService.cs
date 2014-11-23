@@ -113,6 +113,41 @@ namespace Mochify.Simile.Core.Reporting
                 Configuration.ReportName, "images"));
         }
 
+        private string GetImageExtension(Image image)
+        {
+            if (image == null || image.RawFormat == null)
+            {
+                return "jpg";
+            }
+
+            if (ImageFormat.Png.Equals(image.RawFormat))
+            {
+                return "png";
+            }
+            else if (ImageFormat.Jpeg.Equals(image.RawFormat))
+            {
+                return "jpg";
+            }
+            else if (ImageFormat.Gif.Equals(image.RawFormat))
+            {
+                return "gif";
+            }
+
+            // default to jpg 
+            return "jpg";
+        }
+
+        private ImageFormat GetImageFormatForSave(Image image)
+        {
+            if (image.RawFormat == null) { return ImageFormat.Jpeg; }
+            if (ImageFormat.Png.Equals(image.RawFormat) || ImageFormat.Jpeg.Equals(image.RawFormat) || ImageFormat.Gif.Equals(image.RawFormat))
+            {
+                return image.RawFormat;
+            }
+            // default to jpg 
+            return ImageFormat.Jpeg;
+        }
+
         /// <summary>
         /// This will save images to (somewhere). It returns an anonymous
         /// type which will tell you where the files end up.
@@ -122,23 +157,23 @@ namespace Mochify.Simile.Core.Reporting
         private dynamic PersistAssets(TestResult tr)
         {
 
-            var images = new List<Tuple<Image, string>>();
+            var images = new List<Tuple<Image, string, ImageFormat>>();
 
-            string fileExtension = Configuration.OutputImageType == "png" ? "png" : "jpg";
-            ImageFormat format = Configuration.OutputImageType == "png" ? ImageFormat.Png : ImageFormat.Jpeg;
+            //string fileExtension = Configuration.OutputImageType == "png" ? "png" : "jpg";
+            //ImageFormat format = Configuration.OutputImageType == "png" ? ImageFormat.Png : ImageFormat.Jpeg;
 
             var uuid = Guid.NewGuid().ToString("N");
-            var sourcePath = string.Format("images/{0}-{1}-generated.{2}", tr.TestId, uuid, fileExtension);
-            images.Add(Tuple.Create(tr.SourceImage, sourcePath));
+            var sourcePath = string.Format("images/{0}-{1}-generated.{2}", tr.TestId, uuid, GetImageExtension(tr.SourceImage));
+            images.Add(Tuple.Create(tr.SourceImage, sourcePath, tr.SourceFormatHint));
 
-            var diffPath = string.Format("images/{0}-{1}-diff.{2}", tr.TestId, uuid, fileExtension);
-            images.Add(Tuple.Create(tr.DifferenceImage, diffPath));
+            var diffPath = string.Format("images/{0}-{1}-diff.{2}", tr.TestId, uuid, GetImageExtension(tr.DifferenceImage));
+            images.Add(Tuple.Create(tr.DifferenceImage, diffPath, tr.DifferenceFormatHint));
 
-            var referencePath = string.Format("images/{0}-{1}-reference.{2}", tr.TestId, uuid, fileExtension);
+            var referencePath = string.Format("images/{0}-{1}-reference.{2}", tr.TestId, uuid, GetImageExtension(tr.ReferenceImage));
 
             if (Configuration.CopyReferenceImages)
             {
-                images.Add(Tuple.Create(tr.ReferenceImage, referencePath));
+                images.Add(Tuple.Create(tr.ReferenceImage, referencePath, tr.ReferenceFormatHint));
             }
             else
             {
@@ -149,7 +184,7 @@ namespace Mochify.Simile.Core.Reporting
             {
                 if (image.Item1 != null && !string.IsNullOrWhiteSpace(image.Item2))
                 {
-                    image.Item1.Save(Path.Combine(Configuration.OutputDirectory, Configuration.ReportName, image.Item2), format);
+                    image.Item1.Save(Path.Combine(Configuration.OutputDirectory, Configuration.ReportName, image.Item2), image.Item3);
                 }
                 //using (var ms = new MemoryStream())
                 //{

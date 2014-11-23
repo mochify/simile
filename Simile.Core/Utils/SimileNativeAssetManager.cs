@@ -4,6 +4,8 @@ using System.IO;
 using System.Net;
 using Microsoft.Win32;
 
+using Common.Logging;
+
 namespace Mochify.Simile.Core.Utils
 {
     /// <summary>
@@ -11,8 +13,10 @@ namespace Mochify.Simile.Core.Utils
     /// </summary>
     public class SimileNativeAssetManager : IAssetManager
     {
+        private static readonly ILog _log = LogManager.GetCurrentClassLogger();
         public Stream Get(string path)
         {
+            _log.DebugFormat("Getting {0}", path);
             if (string.IsNullOrWhiteSpace(path))
             {
                 throw new ArgumentException("Null or blank string passed to Get.");
