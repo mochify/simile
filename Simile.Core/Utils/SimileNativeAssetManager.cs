@@ -53,7 +53,19 @@ namespace Mochify.Simile.Core.Utils
         {
             var uri = new Uri(fetchPath);
             var wc = new WebClient();
-            wc.DownloadFile(fetchPath, savePath);
+            try
+            {
+                wc.DownloadFile(fetchPath, savePath);
+            }
+            catch (WebException we)
+            {
+                _log.Info(string.Format("Exception encountered when retrieving URI {0}.", fetchPath), we);
+                if (we.Status == WebExceptionStatus.ProtocolError && we.Response != null)
+                {
+                    var rsp = we.Response as HttpWebResponse;
+                    _log.InfoFormat("Status code was {0}", rsp.StatusCode);
+                }
+            }
         }
 
         public string FetchToRandomFilename(string fetchUri, string outputDirectory)
@@ -73,11 +85,18 @@ namespace Mochify.Simile.Core.Utils
                 // I'm assuming that you're not going to be giving me non file/non-HTTP stuff here,
                 // since I'm going to use a download now.
                 HttpWebRequest request = WebRequest.Create(uri) as HttpWebRequest;
-                using (var response = request.GetResponse())
+                try
                 {
-                    var contentType = response.ContentType;
-                    randomName = string.Format("{0}{1}", randomName, GetRegisteredExtension(contentType));
-                    Save(response.GetResponseStream(), Path.Combine(outputDirectory, randomName));
+                    using (var response = request.GetResponse())
+                    {
+                        var contentType = response.ContentType;
+                        randomName = string.Format("{0}{1}", randomName, GetRegisteredExtension(contentType));
+                        Save(response.GetResponseStream(), Path.Combine(outputDirectory, randomName));
+                    }
+                }
+                catch (WebException we)
+                {
+                    _log.Info(string.Format("Exception encountered when retrieving URI {0}.", fetchUri), we);
                 }
             }
 

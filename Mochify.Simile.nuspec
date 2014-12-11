@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Mochify.Simile</id>
-    <version>0.1.0</version>
+    <version>0.1.2</version>
     <title>Simile</title>
     <description>A framework for building testing tools that compare things.</description>
     <authors>William Lee (birryree)</authors>
@@ -15,11 +15,11 @@
         <dependency id="AForge.Imaging" version="2.2.5"/>
         <dependency id="morelinq" version="1.0.16006"/>
         <dependency id="Nustache" version="1.13.8.22" />
-	<dependency id="Common.Logging" version="2.3.1" />
+	      <dependency id="Common.Logging" version="2.3.1" />
       </group>
     </dependencies>
   </metadata>
   <files>
-    <file src="Simile.Core\bin\Release\Mochify.Simile.Core.dll" target="lib\net45\Mochify.Simile.Core.dll" />
+    <file src="Simile.Core\bin\Release\Mochify.Simile.Core.dll" target="lib\net40" />
   </files>
 </package>
